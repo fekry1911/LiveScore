@@ -2,6 +2,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomePage from '../pages/HomePage';
 import MatchDetails from '../components/details/MatchDetails';
 import routes from '../utils/routes';
+import MyTabs from './MyTaps';
+import MatchesLeague from '../components/details/MatchesLeague';
 
 const Stack = createNativeStackNavigator();
 
@@ -11,9 +13,10 @@ export default function MyStack() {
       screenOptions={{
         headerShown: true,
       }}>
+      <Stack.Screen name={routes.taps} component={MyTabs} options={{ headerShown: false }} />
       <Stack.Screen
-        name={routes.home}
-        component={HomePage}
+        name={routes.matchsLeague}
+        component={MatchesLeague}
         options={{
           headerStyle: { backgroundColor: '#1e293b' },
           headerTitleAlign: 'center',

@@ -1,11 +1,14 @@
-import { View, Text, ActivityIndicator, FlatList, TouchableOpacity } from 'react-native';
-import React, { useRef, useState } from 'react';
+import { View, Text, ActivityIndicator, TouchableOpacity, FlatList } from 'react-native';
+import React, { useState } from 'react';
+import { useRoute } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
-import Card from './Card';
-import isEqual from 'lodash.isequal';
-import { getAllMatches2, getTodayMatches } from '../handleApis/getAllData';
+import { getAllMatchesOfLeaguea, getMatchesByLeague } from '../../handleApis/getAllData';
+import Card from '../Card';
 
-function AllMatches() {
+export default function MatchesLeague() {
+  let { params } = useRoute();
+  let id = params.id;
+
   const today = (() => {
     const d = new Date();
     const year = d.getFullYear();
@@ -26,14 +29,11 @@ function AllMatches() {
     currentDate.setDate(currentDate.getDate() + 1);
     setDay(currentDate.toISOString().split('T')[0]);
   }
-
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['GetAllMatches', day],
-    queryFn: () => getAllMatches2(day),
-    staleTime: 1000 * 60,
-    cacheTime: 1000 * 60 * 5,
-    refetchInterval: 60 * 1000,
+  let { data, isLoading, error } = useQuery({
+    queryKey: ['Get Matches Of League', id, day],
+    queryFn: () => getAllMatchesOfLeaguea(id, day),
   });
+  console.log(data);
 
   if (isLoading) {
     return (
@@ -44,8 +44,24 @@ function AllMatches() {
   }
   if (error) {
     return (
-      <View className="flex-1 items-center justify-center bg-slate-800 ">
+      <View className="flex-1 items-center justify-around bg-slate-800 ">
         <Text className="font-extrabold text-white">{error}</Text>
+      </View>
+    );
+  }
+  if (!data || data.length === 0) {
+    return (
+      <View className="flex-1 items-center justify-center bg-slate-800 ">
+        <View className="mb-4 w-full flex-row justify-between p-5">
+          <TouchableOpacity onPress={() => getYesterdayDate()}>
+            <Text className="text-white">previous</Text>
+          </TouchableOpacity>
+          <Text className="font-bold text-white">{today == day ? 'Today' : day}</Text>
+          <TouchableOpacity onPress={() => getTommorowDate()}>
+            <Text className="text-white">next</Text>
+          </TouchableOpacity>
+        </View>
+        <Text className="font-extrabold text-white">No Matches Today</Text>
       </View>
     );
   }
@@ -71,4 +87,3 @@ function AllMatches() {
     </View>
   );
 }
-export default React.memo(AllMatches);

@@ -21,6 +21,36 @@ export const getAllMatches2 = async (today) => {
     return error.message;
   }
 };
+
+export const getAllMatchesOfLeaguea = async (leagueId, date) => {
+  try {
+    const res = await axios.get(
+      `${BASE_URL_2}/?met=Fixtures&leagueId=${leagueId}&APIkey=${API_KEY_2}&from=${date}&to=${date}`
+    );
+
+    const data = res.data;
+
+    if (!data || !data.result) {
+      console.log('No matches found for this day.');
+      return [];
+    }
+
+    return data.result;
+  } catch (error) {
+    console.error('Error fetching matches by league:', error.message);
+    throw new Error(error.message);
+  }
+};
+
+export const getAllLeagues = async (today) => {
+  try {
+    const res = await axios.get(`${BASE_URL_2}/?met=Leagues&APIkey=${API_KEY_2}`);
+    return res.data.result;
+  } catch (error) {
+    console.error('Error fetching match by ID:', error.message);
+    return error.message;
+  }
+};
 export const getMatchById = async (fixtureId) => {
   try {
     const res = await axios.get(`${BASE_URL}/fixtures?id=${fixtureId}`, { headers });

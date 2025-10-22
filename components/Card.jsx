@@ -15,8 +15,7 @@ function Card({ match }) {
   else statusColor = 'red';
 
   return (
-    <TouchableOpacity
-      onPress={() => navigate.navigate(routes.matchDetails, { id: match.event_key })}>
+    <TouchableOpacity onPress={() => navigate.navigate(routes.matchDetails, { match })}>
       <View className="mb-5 w-full flex-row justify-around overflow-hidden rounded-2xl border border-white py-3">
         <View className="items-center justify-around">
           <Image
