@@ -28,9 +28,7 @@ export default function MyStack() {
         name={routes.matchDetails}
         component={MatchDetails}
         options={{
-          presentation: 'formSheet',
           headerShown: false,
-          sheetAllowedDetents: [0.4, 0.9],
         }}
       />
     </Stack.Navigator>
