@@ -51,8 +51,8 @@ export default function MatchesLeague() {
   }
   if (!data || data.length === 0) {
     return (
-      <View className="flex-1 items-center justify-center bg-slate-800 ">
-        <View className="mb-4 w-full flex-row justify-between p-5">
+      <View className="h-full flex-1 items-center justify-center bg-slate-800 ">
+        <View className="w-full flex-row justify-between">
           <TouchableOpacity onPress={() => getYesterdayDate()}>
             <Text className="text-white">previous</Text>
           </TouchableOpacity>
@@ -66,23 +66,26 @@ export default function MatchesLeague() {
     );
   }
   return (
-    <View className="w-full items-center justify-center  bg-slate-800 pt-16">
+    <View className="flex-1 bg-slate-800 ">
       <View className="mb-4 w-full flex-row justify-between p-5">
-        <TouchableOpacity onPress={() => getYesterdayDate()}>
+        <TouchableOpacity onPress={getYesterdayDate}>
           <Text className="text-white">previous</Text>
         </TouchableOpacity>
+
         <Text className="font-bold text-white">{today == day ? 'Today' : day}</Text>
-        <TouchableOpacity onPress={() => getTommorowDate()}>
+
+        <TouchableOpacity onPress={getTommorowDate}>
           <Text className="text-white">next</Text>
         </TouchableOpacity>
       </View>
+
       <FlatList
         keyExtractor={(item) => item.event_key}
         initialNumToRender={10}
         windowSize={5}
-        className="w-full"
         data={data}
         renderItem={({ item }) => <Card match={item} />}
+        className="flex-1"
       />
     </View>
   );

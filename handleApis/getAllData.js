@@ -42,6 +42,81 @@ export const getAllMatchesOfLeaguea = async (leagueId, date) => {
   }
 };
 
+export const getTeamsOfLeague = async (leagueId) => {
+  try {
+    const res = await axios.get(
+      `${BASE_URL_2}/?met=Standings&leagueId=${leagueId}&APIkey=${API_KEY_2}`
+    );
+
+    const data = res.data;
+
+    if (!data || !data.result) {
+      return [];
+    }
+    console.log(data.result);
+
+    return data.result.total;
+  } catch (error) {
+    console.error('Error fetching matches by league:', error.message);
+    throw new Error(error.message);
+  }
+};
+export const getPlayersOfTeam = async (TeamId) => {
+  try {
+    const res = await axios.get(`${BASE_URL_2}/?met=Teams&teamId=${TeamId}&APIkey=${API_KEY_2}`);
+
+    const data = res.data;
+
+    if (!data || !data.result) {
+      return [];
+    }
+    console.log(data.result.players);
+
+    return data.result;
+  } catch (error) {
+    console.error('Error fetching matches by league:', error.message);
+    throw new Error(error.message);
+  }
+};
+export const getPlayersDetails = async (PlayerId) => {
+  try {
+    const res = await axios.get(
+      `${BASE_URL_2}/?met=Players&playerId=${PlayerId}&APIkey=${API_KEY_2}`
+    );
+
+    const players = res.data?.result || [];
+
+    if (players.length === 0) return null;
+
+    const validPlayer = players.find((p) => p.player_match_played && p.player_match_played !== '');
+
+    return validPlayer || players[0];
+  } catch (error) {
+    console.error('Error fetching player data:', error.message);
+    throw new Error(error.message);
+  }
+};
+
+export const getTopScoreesOfLeaguea = async (leagueId) => {
+  try {
+    const res = await axios.get(
+      `${BASE_URL_2}/?met=Topscorers&leagueId=${leagueId}&APIkey=${API_KEY_2}`
+    );
+
+    const data = res.data;
+
+    if (!data || !data.result) {
+      return [];
+    }
+    console.log(data.result);
+
+    return data.result;
+  } catch (error) {
+    console.error('Error fetching matches by league:', error.message);
+    throw new Error(error.message);
+  }
+};
+
 export const getAllLeagues = async (today) => {
   try {
     const res = await axios.get(`${BASE_URL_2}/?met=Leagues&APIkey=${API_KEY_2}`);

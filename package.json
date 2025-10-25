@@ -20,6 +20,7 @@
     "@welldone-software/why-did-you-render": "^10.0.1",
     "axios": "^1.12.2",
     "expo": "^54.0.0",
+    "expo-image": "~3.0.10",
     "expo-status-bar": "~3.0.8",
     "lodash.isequal": "^4.5.0",
     "lucide-react-native": "^0.546.0",
@@ -35,6 +36,7 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@types/react": "~19.1.10",
+    "babel-preset-expo": "^54.0.6",
     "eslint": "^9.25.1",
     "eslint-config-expo": "~10.0.0",
     "eslint-config-prettier": "^10.1.2",

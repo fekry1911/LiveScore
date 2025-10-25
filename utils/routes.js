@@ -4,5 +4,10 @@ const routes = {
   matchDetails: 'match',
   taps: 'taps',
   matchsLeague: 'Matchs League',
+  chooseData: 'ChosseData',
+  teamsOfLeaguea: 'League Standings',
+  players: 'Players',
+  TopScores: 'Top Scores',
+  playerData: 'Player Data',
 };
 export default routes;

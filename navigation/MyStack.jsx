@@ -4,6 +4,11 @@ import MatchDetails from '../components/details/MatchDetails';
 import routes from '../utils/routes';
 import MyTabs from './MyTaps';
 import MatchesLeague from '../components/details/MatchesLeague';
+import ChooseData from '../components/Leaguea/ChooseData';
+import TeamsOfLeaguea from '../components/Leaguea/TeamsOfLeaguea';
+import Players from '../components/players/Players';
+import Topscorers from '../components/Leaguea/Topscorers';
+import PlayerData from '../components/players/PlayerData.';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,13 +27,73 @@ export default function MyStack() {
           headerTitleAlign: 'center',
           headerTitleStyle: { color: 'white' },
           headerShadowVisible: false,
+          headerTintColor: 'white',
         }}
       />
       <Stack.Screen
         name={routes.matchDetails}
         component={MatchDetails}
         options={{
-          headerShown: false,
+          headerStyle: { backgroundColor: '#1e293b' },
+          headerTitleAlign: 'center',
+          headerTitleStyle: { color: 'white' },
+          headerShadowVisible: false,
+          headerTintColor: 'white',
+        }}
+      />
+      <Stack.Screen
+        name={routes.chooseData}
+        component={ChooseData}
+        options={{
+          headerStyle: { backgroundColor: '#1e293b' },
+          headerTitleAlign: 'center',
+          headerTitleStyle: { color: 'white' },
+          headerShadowVisible: false,
+          headerTintColor: 'white',
+        }}
+      />
+      <Stack.Screen
+        name={routes.teamsOfLeaguea}
+        component={TeamsOfLeaguea}
+        options={{
+          headerStyle: { backgroundColor: '#1e293b' },
+          headerTitleAlign: 'center',
+          headerTitleStyle: { color: 'white' },
+          headerShadowVisible: false,
+          headerTintColor: 'white',
+        }}
+      />
+      <Stack.Screen
+        name={routes.players}
+        component={Players}
+        options={{
+          headerStyle: { backgroundColor: '#1e293b' },
+          headerTitleAlign: 'center',
+          headerTitleStyle: { color: 'white' },
+          headerShadowVisible: false,
+          headerTintColor: 'white',
+        }}
+      />
+      <Stack.Screen
+        name={routes.TopScores}
+        component={Topscorers}
+        options={{
+          headerStyle: { backgroundColor: '#1e293b' },
+          headerTitleAlign: 'center',
+          headerTitleStyle: { color: 'white' },
+          headerShadowVisible: false,
+          headerTintColor: 'white',
+        }}
+      />
+      <Stack.Screen
+        name={routes.playerData}
+        component={PlayerData}
+        options={{
+          headerStyle: { backgroundColor: '#1e293b' },
+          headerTitleAlign: 'center',
+          headerTitleStyle: { color: 'white' },
+          headerShadowVisible: false,
+          headerTintColor: 'white',
         }}
       />
     </Stack.Navigator>

@@ -9,8 +9,7 @@ export default function LeaguesCard({ data }) {
 
   const fallbackImg = 'https://cdn-icons-png.flaticon.com/512/733/733605.png';
   return (
-    <TouchableOpacity
-      onPress={() => navigate.navigate(routes.matchsLeague, { id: data.league_key })}>
+    <TouchableOpacity onPress={() => navigate.navigate(routes.chooseData, { id: data.league_key })}>
       <View className="mb-5 w-full flex-row items-center justify-around overflow-hidden rounded-2xl border  border-white py-5">
         <Image
           resizeMode="contain"
